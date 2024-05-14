@@ -37,6 +37,7 @@ public class RehabApplication {
      * @return print bean names
      */
     @Bean
+    @SuppressWarnings("all")
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
             System.out.println("Let's inspect the beans provided by Spring Boot:");
@@ -44,7 +45,8 @@ public class RehabApplication {
             var beanNames = ctx.getBeanDefinitionNames();
             Arrays.sort(beanNames);
             for (var beanName : beanNames) {
-                System.out.println(beanName);
+                // reload, refresh 과정에서 심히 거슬린다.
+//                System.out.println(beanName);
             }
         };
     }

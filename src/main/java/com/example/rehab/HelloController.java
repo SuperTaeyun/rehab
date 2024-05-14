@@ -22,7 +22,8 @@ public class HelloController {
      *
      * @return pure text "Greetings from Spring Boot!"
      */
-    @GetMapping("/")
+//    @GetMapping("/")
+    @SuppressWarnings("all")
     public String index() {
         return "Greetings from Spring Boot!";
     }
