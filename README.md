@@ -4,7 +4,7 @@
 같다.
 
 - [~~Building an Application with Spring Boot~~](https://spring.io/guides/gs/spring-boot)
-- [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service)
+- [~~Building a RESTful Web Service~~](https://spring.io/guides/gs/rest-service)
 - [Comsuming a RESTful Web Service](https://spring.io/guides/gs/consuming-rest)
 - [Uploading Files](https://spring.io/guides/gs/uploading-files)
 - [~~Serving Web Content with Spring MVC~~](https://spring.io/guides/gs/serving-web-content)
