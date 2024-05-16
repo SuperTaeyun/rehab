@@ -1,12 +1,19 @@
 package com.example.rehab;
 
+import com.example.rehab.consumingrest.Quote;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * {@link SpringBootApplication @SpringBootApplication}은 다음과 같은 어노테이션을 포함하고 있다:
@@ -21,6 +28,8 @@ import java.util.Arrays;
  */
 @SpringBootApplication
 public class RehabApplication {
+
+    public static final Logger log = LoggerFactory.getLogger(RehabApplication.class);
 
     public static void main(String[] args) {
         /*
@@ -48,6 +57,25 @@ public class RehabApplication {
                 // reload, refresh 과정에서 심히 거슬린다.
 //                System.out.println(beanName);
             }
+        };
+    }
+
+    @Bean
+    public RestTemplateBuilder restTemplateBuilder() {
+        return new RestTemplateBuilder();
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+
+    @Bean
+    @Profile("!test")
+    public CommandLineRunner run(RestTemplate restTemplate) {
+        return args -> {
+            Quote quote = restTemplate.getForObject("http://localhost:8080/api/random", Quote.class);
+            log.info(Objects.requireNonNull(quote).toString());
         };
     }
 
