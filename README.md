@@ -8,7 +8,7 @@
 - [~~Comsuming a RESTful Web Service~~](https://spring.io/guides/gs/consuming-rest)
 - [Uploading Files](https://spring.io/guides/gs/uploading-files)
 - [~~Serving Web Content with Spring MVC~~](https://spring.io/guides/gs/serving-web-content)
-- [Creating Asynchronous Methods](https://spring.io/guides/gs/async-method)
+- [~~Creating Asynchronous Methods~~](https://spring.io/guides/gs/async-method)
 - [Caching Data with Spring](https://spring.io/guides/gs/caching)
 - [~~Accessing JPA Data with REST~~](https://spring.io/guides/gs/accessing-data-rest)
 - [Enabling Cross Origin Requests for a RESTful Web Service](https://spring.io/guides/gs/rest-service-cors)

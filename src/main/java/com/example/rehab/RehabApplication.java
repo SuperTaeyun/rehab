@@ -12,10 +12,13 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 /**
  * {@link SpringBootApplication @SpringBootApplication}은 다음과 같은 어노테이션을 포함하고 있다:
@@ -28,6 +31,7 @@ import java.util.Objects;
  * <li>{@link org.springframework.context.annotation.ComponentScan @ComponentScan}: Spring이 빈으로 등록될 수 있는
  * 클래스를 찾아 빈으로 등록하게 한다.</li>
  */
+@EnableAsync
 @SpringBootApplication
 public class RehabApplication {
 
@@ -114,6 +118,18 @@ public class RehabApplication {
             });
             log.info("");
         };
+    }
+
+    @Bean
+    public Executor taskExecutor() {
+        var executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(2);
+        executor.setMaxPoolSize(2);
+        executor.setQueueCapacity(500);
+        executor.setThreadNamePrefix("GithubLookup-");
+        executor.initialize();
+
+        return executor;
     }
 
 }
